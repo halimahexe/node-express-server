@@ -45,6 +45,13 @@ const staticHandler = express.static("public");
 
 server.use(staticHandler);
 
+// Adding a POST handler
+
+server.post("/submit", (req, res) => {
+    console.log("posted");
+    res.send("thanks for submitting");
+})
+
 // Catch-all handler
 
 server.use((req, res) => {
