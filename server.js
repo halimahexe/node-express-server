@@ -19,6 +19,9 @@ function logger(req, res, next) {
     next();
 }
 
+// Use middleware to log GET / in our terminal when we load any page
+server.use(logger);
+
 server.get("/", logger, (req, res) => {
     res.send("<h1>Hello</h1>");
 })
