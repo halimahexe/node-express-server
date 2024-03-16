@@ -20,7 +20,7 @@ function logger(req, res, next) {
 }
 
 // Use middleware to log GET / in our terminal when we load any page
-server.use(logger);
+// server.use(logger);
 
 server.get("/", logger, (req, res) => {
     res.send("<h1>Hello</h1>");
@@ -38,6 +38,12 @@ server.get("/users/:name", (req, res) => {
     const name = req.params.name;
     res.send(`<h1>Hello ${name}</h1>`);
 });
+
+// Handle static CSS
+
+const staticHandler = express.static("public");
+
+server.use(staticHandler);
 
 // Catch-all handler
 
