@@ -2,15 +2,26 @@ const express = require("express");
 
 const server = express();
 
-server.get("/", (req, res, next) => {
+// server.get("/", (req, res, next) => {
+//     console.log(req.method + " " + req.url);
+//     next();
+// })
+
+// server.get("/", (req, res) => {
+//     const time = new Date().toLocaleTimeString();
+//     res.send(`<h1>Hello</h1>`);
+// });
+
+// Use a function called logger to pass multiple handler functions:
+
+function logger(req, res, next) {
     console.log(req.method + " " + req.url);
     next();
-})
+}
 
-server.get("/", (req, res) => {
-    const time = new Date().toLocaleTimeString();
-    res.send(`<h1>Hello, it's ${time}</h1>`);
-});
+server.get("/", logger, (req, res) => {
+    res.send("<h1>Hello</h1>");
+})
 
 server.get("/json", (req, res) => {
     res.send({message: "Hello"});
